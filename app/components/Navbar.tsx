@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
+import { DemoModal } from "./DemoModal";
 import { useScrollNavigation } from "@/app/hooks/useScrollNavigation";
 import { useMenuNavigation } from "@/app/hooks/useMenuNavigation";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const { activeTab, setActiveTab, isScrolled, formatSlug } = useScrollNavigation();
   const { handleNavigation, menuItems } = useMenuNavigation(setActiveTab);
 
@@ -57,7 +59,10 @@ export function Navbar() {
             </button>
           ))}
         </div>
-        <button className="px-6 py-2.5 rounded-full font-bold text-sm transition-all active:scale-95 text-white bg-black dark:bg-white dark:text-black">
+        <button 
+          onClick={() => setIsDemoModalOpen(true)}
+          className="px-6 py-2.5 rounded-full font-bold text-sm transition-all active:scale-95 text-white bg-black dark:bg-white dark:text-black"
+        >
           Solicita tu demo
         </button>
       </nav>
@@ -95,6 +100,7 @@ export function Navbar() {
                 ))}
               </div>
               <motion.button
+                onClick={() => setIsDemoModalOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-2.5 rounded-full font-bold text-sm shadow-md text-white bg-[var(--primary-color)]"
@@ -105,6 +111,11 @@ export function Navbar() {
           </motion.header>
         )}
       </AnimatePresence>
+
+      <DemoModal 
+        isOpen={isDemoModalOpen} 
+        onClose={() => setIsDemoModalOpen(false)} 
+      />
     </>
   );
 }
