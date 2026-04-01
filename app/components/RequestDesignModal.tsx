@@ -10,7 +10,7 @@ interface RequestDesignModalProps {
 }
 
 export function RequestDesignModal({ isOpen, designTitle, onClose }: RequestDesignModalProps) {
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({ name: "", contact: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -23,7 +23,8 @@ export function RequestDesignModal({ isOpen, designTitle, onClose }: RequestDesi
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contact: email,
+          name: formData.name,
+          contact: formData.contact,
           designTitle,
           type: "design-request",
         }),
@@ -31,7 +32,7 @@ export function RequestDesignModal({ isOpen, designTitle, onClose }: RequestDesi
 
       if (response.ok) {
         setSubmitted(true);
-        setEmail("");
+        setFormData({ name: "", contact: "" });
         setTimeout(() => {
           setSubmitted(false);
           onClose();
@@ -132,7 +133,7 @@ export function RequestDesignModal({ isOpen, designTitle, onClose }: RequestDesi
                       className="mb-6 text-sm opacity-70"
                       style={{ color: "var(--secondary-text-color)" }}
                     >
-                      Déjanos tu email para cotizarte
+                      Déjanos tus datos para cotizarte
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -141,13 +142,35 @@ export function RequestDesignModal({ isOpen, designTitle, onClose }: RequestDesi
                           className="block text-sm font-medium mb-2"
                           style={{ color: "var(--primary-text-color)" }}
                         >
-                          Tu email
+                          Nombre
                         </label>
                         <input
-                          type="email"
-                          placeholder="tu@email.com"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
+                          type="text"
+                          placeholder="Tu nombre"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:border-opacity-100"
+                          style={{
+                            backgroundColor: "var(--glass-bg)",
+                            borderColor: "var(--glass-border)",
+                            color: "var(--primary-text-color)",
+                          }}
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label
+                          className="block text-sm font-medium mb-2"
+                          style={{ color: "var(--primary-text-color)" }}
+                        >
+                          Email o Teléfono
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="tu@email.com o +1 234 567 8900"
+                          value={formData.contact}
+                          onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                           className="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:border-opacity-100"
                           style={{
                             backgroundColor: "var(--glass-bg)",

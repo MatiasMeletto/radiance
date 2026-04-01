@@ -9,7 +9,7 @@ interface DemoModalProps {
 }
 
 export function DemoModal({ isOpen, onClose }: DemoModalProps) {
-  const [formData, setFormData] = useState({ contact: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", contact: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -26,7 +26,7 @@ export function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
       if (response.ok) {
         setSubmitted(true);
-        setFormData({ contact: "", message: "" });
+        setFormData({ name: "", contact: "", message: "" });
         setTimeout(() => {
           setSubmitted(false);
           onClose();
@@ -125,6 +125,30 @@ export function DemoModal({ isOpen, onClose }: DemoModalProps) {
                     </p>
 
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <label
+                          className="block text-sm font-medium mb-2"
+                          style={{ color: "var(--primary-text-color)" }}
+                        >
+                          Nombre
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Tu nombre"
+                          value={formData.name}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
+                          className="w-full px-4 py-3 rounded-lg border transition-colors focus:outline-none focus:border-opacity-100"
+                          style={{
+                            backgroundColor: "var(--glass-bg)",
+                            borderColor: "var(--glass-border)",
+                            color: "var(--primary-text-color)",
+                          }}
+                          required
+                        />
+                      </div>
+
                       <div>
                         <label
                           className="block text-sm font-medium mb-2"
