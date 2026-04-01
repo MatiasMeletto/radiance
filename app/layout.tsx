@@ -14,8 +14,11 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Radiance Devs - Software que ilumina tu negocio",
-  description: "Agencia freelance de desarrollo web y aplicaciones.",
+  title: "Radiance",
+  description: "Agencia freelance de desarrollo web y aplicaciones. Soluciones personalizadas para llevar tu negocio al siguiente nivel.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

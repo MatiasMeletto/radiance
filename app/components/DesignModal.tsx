@@ -1,8 +1,9 @@
 "use client";
-import { memo, useMemo } from "react";
+import { memo, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { designCategories } from "../constants/designCategories";
+import { RequestDesignModal } from "./RequestDesignModal";
 
 interface DesignModalProps {
   selectedId: string | null;
@@ -14,6 +15,7 @@ const allItems = designCategories.flatMap(c =>
 );
 
 export const DesignModal = memo(function DesignModal({ selectedId, onClose }: DesignModalProps) {
+  const [showRequestModal, setShowRequestModal] = useState(false);
   const selectedItem = useMemo(
     () => selectedId ? allItems.find(item => item.id === selectedId) : null,
     [selectedId]
@@ -92,6 +94,7 @@ export const DesignModal = memo(function DesignModal({ selectedId, onClose }: De
                 </p>
 
                 <button 
+                  onClick={() => setShowRequestModal(true)}
                   className="w-full md:w-auto px-8 py-4 rounded-full font-bold text-white shadow-xl transition-opacity hover:opacity-90"
                   style={{ backgroundColor: 'var(--primary-color)' }}
                 >
@@ -100,6 +103,12 @@ export const DesignModal = memo(function DesignModal({ selectedId, onClose }: De
               </div>
             </motion.div>
           </div>
+
+          <RequestDesignModal 
+            isOpen={showRequestModal}
+            designTitle={selectedItem.title}
+            onClose={() => setShowRequestModal(false)}
+          />
         </>
       )}
     </AnimatePresence>
