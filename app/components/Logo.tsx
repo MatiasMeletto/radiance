@@ -62,7 +62,7 @@ export function Logo() {
       </div>
 
       <span
-        className="font-bold text-xl tracking-tighter transition-colors duration-300 text-[var(--primary-text-color)] group-hover:text-[var(--primary-light-color)]"
+        className="font-bold text-xl tracking-tighter text-[var(--primary-text-color)]"
       >
         Radiance
       </span>
