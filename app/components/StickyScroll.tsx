@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { CheckCircle } from "lucide-react";
+import { STICKY_SCROLL_IMAGES } from "../constants/images";
 
 export function StickyScroll() {
   const targetRef = useRef(null);
@@ -13,10 +14,9 @@ export function StickyScroll() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   return (
-    <section ref={targetRef} className="relative w-full max-w-7xl mx-auto px-6 py-16 md:py-32">
+    <section ref={targetRef} className="relative w-full max-w-7xl mx-auto px-6 py-16 md:py-32" id="opciones">
       <motion.div style={{ opacity }} className="flex flex-col md:flex-row gap-12 lg:gap-24">
         
-        {/* ----------------------------------------COLUMNA IZQUIERDA---------------------------------------- */}
         <div className="md:w-1/2">
           <div className="relative md:sticky md:top-32">
             <motion.span 
@@ -63,11 +63,10 @@ export function StickyScroll() {
           </div>
         </div>
 
-        {/* ----------------------------------------COLUMNA DERECHA---------------------------------------- */}
         <div className="md:w-1/2 flex flex-col gap-8 md:gap-12">
-          {[1, 2, 3].map((item, index) => (
+          {STICKY_SCROLL_IMAGES.map((image, index) => (
             <motion.div
-              key={item}
+              key={index}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }} 
@@ -81,14 +80,14 @@ export function StickyScroll() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 opacity-60" />
               
               <img 
-                src={`https://framerusercontent.com/images/WkcfohGmGxdaZXOQkB8urlpwXg.png`} 
-                alt="Feature" 
+                src={image.src} 
+                alt={image.title} 
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
               />
               
               <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20">
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Feature Highlight {item}</h3>
-                <p className="text-white/70 text-sm md:text-base">Streamline your workflow with our advanced tools.</p>
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{image.title}</h3>
+                <p className="text-white/70 text-sm md:text-base">{image.description}</p>
               </div>
             </motion.div>
           ))}

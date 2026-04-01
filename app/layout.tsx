@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const principalFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const monoFont = JetBrains_Mono({
   subsets: ["latin"],
 });
 
@@ -35,19 +34,21 @@ export default function RootLayout({
                 const theme = localStorage.getItem('radiance-theme');
                 if (theme === 'dark' || !theme) {
                   document.documentElement.setAttribute('data-theme', 'dark');
-                  }
-                  } catch (e) {}
-                  })();
-                  `
+                }
+              } catch (e) {}
+            })();
+            `
           }}
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${principalFont.className} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 "use client";
 import { motion, useTransform, MotionValue } from "framer-motion";
+import { memo } from "react";
 
 interface CardProps {
   src: string;
@@ -7,7 +8,7 @@ interface CardProps {
   className?: string;
 }
 
-export function Card3D({ src, scrollYProgress, className }: CardProps) {
+function Card3DComponent({ src, scrollYProgress, className }: CardProps) {
   const rotateX = useTransform(scrollYProgress, [0, 0.6], [25, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.6], [0.9, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0.5, 1]);
@@ -18,7 +19,7 @@ export function Card3D({ src, scrollYProgress, className }: CardProps) {
         rotateX, 
         scale, 
         opacity,
-        transformStyle: "preserve-3d",
+        transformStyle: "preserve-3d" as const,
       }}
       className={`w-full rounded-3xl overflow-hidden border border-white/10 bg-[#1a1615] shadow-2xl will-change-transform ${className || 'aspect-video'}`}
     >
@@ -37,3 +38,5 @@ export function Card3D({ src, scrollYProgress, className }: CardProps) {
     </motion.div>
   );
 }
+
+export const Card3D = memo(Card3DComponent);

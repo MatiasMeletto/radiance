@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Tema Claro (Default) */
+/* Tema Claro (mi favorito y el que pense a nivel de diseño) */
 :root {
   --bg-color: #fffaed;
   --primary-text-color: #242f3d;
@@ -51,4 +51,6 @@ body {
   background: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* Evita transiciones en propiedades que cambien constantemente */
+  will-change: background-color;
 }

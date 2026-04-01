@@ -1,12 +1,19 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Moon, Sun } from 'lucide-react';
+import dynamic from 'next/dynamic';
 
-import { ProjectCarousel } from "./components/ProjectCarousel";
-import { StickyScroll } from "./components/StickyScroll";
-import { Community } from './components/Community';
+const ProjectCarousel = dynamic(() => import("./components/ProjectCarousel").then(mod => ({ default: mod.ProjectCarousel })), {
+  loading: () => <div className="h-96 bg-gray-200 rounded-lg animate-pulse" />
+});
+
+const StickyScroll = dynamic(() => import("./components/StickyScroll").then(mod => ({ default: mod.StickyScroll })), {
+  loading: () => <div className="h-96 bg-gray-200 rounded-lg animate-pulse" />
+});
+
+const Community = dynamic(() => import('./components/Community').then(mod => ({ default: mod.Community })), {
+  loading: () => <div className="h-96 bg-gray-200 rounded-lg animate-pulse" />
+});
 
 export default function Home() {
   return (
@@ -34,7 +41,7 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.2 }}
           className="text-2xl md:text-4xl font-medium italic opacity-80"
         >
-          Software solutions for EVERYONE
+          Soluciones de software para TODOS
         </motion.h2>
 
         <motion.p
@@ -43,18 +50,9 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-6 text-lg text-[var(--secondary-text-color)] max-w-xl"
         >
-          All-in-one platform for managing clients, projects, and payments—without the chaos.
+          Soluciones de software de todo tipo, desde aplicaciones web hasta móviles.
         </motion.p>
 
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: "spring", stiffness: 200, delay: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          className="mt-10 px-10 py-4 rounded-full font-bold shadow-xl text-white bg-[var(--primary-color)]"
-        >
-          Start your project now
-        </motion.button>
       </section>
 
       {/* -------------------------------------------------COMPONENTES------------------------------------------------------ */}

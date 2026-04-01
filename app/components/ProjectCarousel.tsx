@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { motion, useScroll } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Card3D } from "./card3D";
+import Image from "next/image";
 
 const projects = [
   "https://framerusercontent.com/images/JeI7uULY0av9DxD7q7NVLTuoNc.png",
@@ -29,6 +30,7 @@ export function ProjectCarousel() {
 
   return (
     <section
+      id="productos"
       ref={containerRef}
       className="relative w-full max-w-7xl mx-auto md:px-4 -mt-8 md:-mt-16 pb-12 md:pb-40 z-20 md:[perspective:1500px]"
     >
