@@ -59,13 +59,25 @@ export const DesignModal = memo(function DesignModal({ selectedId, onClose }: De
               </button>
 
               <div className="relative w-full aspect-[4/3] md:aspect-video shrink-0 overflow-hidden">
-                <img 
-                  src={typeof selectedItem.img === 'string' ? selectedItem.img : selectedItem.img.src} 
-                  alt={selectedItem.title} 
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  decoding="async"
-                />
+                {selectedItem.video ? (
+                  <video 
+                    key={selectedItem.id}
+                    src={selectedItem.video}
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <img 
+                    src={typeof selectedItem.fi === 'string' ? selectedItem.fi : selectedItem.fi} 
+                    alt={selectedItem.title} 
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                  />
+                )}
               </div>
 
               <div className="p-8 md:p-12">
@@ -93,4 +105,3 @@ export const DesignModal = memo(function DesignModal({ selectedId, onClose }: De
     </AnimatePresence>
   );
 });
-

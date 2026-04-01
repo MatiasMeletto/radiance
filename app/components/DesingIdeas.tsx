@@ -1,5 +1,5 @@
 "use client";
-import { useState, memo, useCallback } from "react";
+import { useState, memo, useCallback, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { designCategories } from "../constants/designCategories";
 import { DesignModal } from "./DesignModal";
@@ -10,43 +10,56 @@ const DesignCard = memo(function DesignCard({
   onHover, 
   onClick 
 }: {
-  item: { id: string; title: string; desc: string; fi: string | { src: string }; img: string | { src: string } };
+  item: { id: string; title: string; desc: string; fi: string | { src: string }; img?: string | { src: string }; video?: string };
   isHovered: boolean;
   onHover: (id: string | null) => void;
   onClick: () => void;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   return (
     <motion.div
       onClick={onClick}
-      onMouseEnter={() => onHover(item.id)}
-      onMouseLeave={() => onHover(null)}
-      className="group relative flex flex-col cursor-pointer rounded-[32px] overflow-hidden border transition-shadow duration-300 hover:shadow-2xl"
-      style={{
-        backgroundColor: 'var(--glass-bg)',
-        borderColor: 'var(--glass-border)'
+      onMouseEnter={() => {
+        onHover(item.id);
+        if (videoRef.current) videoRef.current.play().catch(() => {});
       }}
+      onMouseLeave={() => {
+        onHover(null);
+        if (videoRef.current) {
+          videoRef.current.pause();
+          videoRef.current.currentTime = 0;
+        }
+      }}
+      className="group relative flex flex-col cursor-pointer rounded-[32px] overflow-hidden border transition-shadow duration-300 hover:shadow-2xl"
+      style={{ backgroundColor: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}
     >
       <div className="relative aspect-video overflow-hidden z-0 bg-gray-800">
         <img
-          src={(() => {
-            const img = isHovered ? item.img : item.fi;
-            return typeof img === 'string' ? img : img.src;
-          })()}
+          src={typeof item.fi === 'string' ? item.fi : item.fi.src}
           alt={item.title}
-          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered && item.video ? 'opacity-0' : 'opacity-100'}`}
           loading="lazy"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-20 transition-opacity" />
+        {item.video && (
+          <video 
+            ref={videoRef}
+            src={item.video}
+            muted 
+            loop 
+            playsInline
+            preload="auto"
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+          />
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50 group-hover:opacity-20 transition-opacity pointer-events-none" />
       </div>
 
       <div className="p-6 relative z-10">
-        <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--primary-text-color)' }}>
-          {item.title}
-        </h4>
-        <p className="text-sm opacity-70" style={{ color: 'var(--secondary-text-color)' }}>
-          {item.desc}
-        </p>
+        <h4 className="text-xl font-bold mb-2" style={{ color: 'var(--primary-text-color)' }}>{item.title}</h4>
+        <p className="text-sm opacity-70" style={{ color: 'var(--secondary-text-color)' }}>{item.desc}</p>
       </div>
     </motion.div>
   );
@@ -58,7 +71,7 @@ const DesignSection = memo(function DesignSection({
   onHover,
   onSelectItem
 }: {
-  section: { category: string; items: { id: string; title: string; desc: string; fi: string | { src: string }; img: string | { src: string } }[] };
+  section: { category: string; items: { id: string; title: string; desc: string; fi: string | { src: string }; img?: string | { src: string }; video?: string }[] };
   hoveredId: string | null;
   onHover: (id: string | null) => void;
   onSelectItem: (id: string) => void;

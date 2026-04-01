@@ -17,7 +17,7 @@ const Community = dynamic(() => import('./components/Community').then(mod => ({ 
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: 'var(--bg-color)', color: 'var(--primary-text-color)' }} className="min-h-screen flex flex-col transition-colors duration-300 overflow-x-hidden">
+    <div style={{ backgroundColor: 'var(--bg-color)', color: 'var(--primary-text-color)' }} className="min-h-screen flex flex-col transition-colors duration-300 overflow-x-clip">
 
       {/* --------------------------------------------HERO SECTION---------------------------------------------------- */}
       <section className="flex flex-col items-center justify-center pt-32 pb-20 px-4 text-center z-10 relative">

@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning data-theme="dark">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -34,6 +34,8 @@ export default function RootLayout({
                 const theme = localStorage.getItem('radiance-theme');
                 if (theme === 'dark' || !theme) {
                   document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                  document.documentElement.setAttribute('data-theme', 'light');
                 }
               } catch (e) {}
             })();
@@ -43,6 +45,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${principalFont.className} antialiased`}
+        suppressHydrationWarning
       >
         <ThemeProvider>
           <Navbar />
