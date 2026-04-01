@@ -56,7 +56,7 @@ export default function Home() {
       </section>
 
       {/* -------------------------------------------------COMPONENTES------------------------------------------------------ */}
-      <ProjectCarousel />
+      {/* <ProjectCarousel /> */}
 
       <StickyScroll />
 

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { designCategories } from "../constants/designCategories";
 import { DesignModal } from "./DesignModal";
 
-// Memoized card component
 const DesignCard = memo(function DesignCard({ 
   item, 
   isHovered, 
@@ -53,7 +52,6 @@ const DesignCard = memo(function DesignCard({
   );
 });
 
-// Memoized section component
 const DesignSection = memo(function DesignSection({
   section,
   hoveredId,

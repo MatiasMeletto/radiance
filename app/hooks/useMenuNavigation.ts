@@ -2,7 +2,8 @@
 import { useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-const menuItems = ["Productos", "Opciones", "Contacto", "Ideas de diseño"];
+//recordar agregar de nuevo "Productos"
+const menuItems = [ "Opciones", "Contacto", "Ideas de diseño"];
 const EXTERNAL_PAGES = ["ideas-de-diseno"];
 
 export function useMenuNavigation(setActiveTab: (tab: string) => void) {

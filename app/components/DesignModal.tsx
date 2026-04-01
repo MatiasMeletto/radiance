@@ -9,13 +9,11 @@ interface DesignModalProps {
   onClose: () => void;
 }
 
-// Pre-compute flat list of items once
 const allItems = designCategories.flatMap(c => 
   c.items.map(item => ({ ...item, category: c.category }))
 );
 
 export const DesignModal = memo(function DesignModal({ selectedId, onClose }: DesignModalProps) {
-  // Use useMemo to avoid repeated searches
   const selectedItem = useMemo(
     () => selectedId ? allItems.find(item => item.id === selectedId) : null,
     [selectedId]
