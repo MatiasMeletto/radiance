@@ -8,9 +8,10 @@ interface MobileMenuProps {
   activeTab: string;
   menuItems: string[];
   onNavigate: (item: string) => void;
+  onDemoClick: () => void;
 }
 
-export function MobileMenu({ isOpen, onClose, activeTab, menuItems, onNavigate }: MobileMenuProps) {
+export function MobileMenu({ isOpen, onClose, activeTab, menuItems, onNavigate, onDemoClick }: MobileMenuProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -52,6 +53,10 @@ export function MobileMenu({ isOpen, onClose, activeTab, menuItems, onNavigate }
             transition={{ delay: 0.3 }}
             className="w-full mt-6 py-4 rounded-2xl font-bold text-lg text-white shadow-lg active:scale-95 transition-transform"
             style={{ backgroundColor: 'var(--primary-color)' }}
+            onClick={() => {
+              onClose();
+              onDemoClick();
+            }}  
           >
             Solicita tu demo
           </motion.button>

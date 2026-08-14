@@ -37,6 +37,7 @@ export function Navbar() {
         activeTab={activeTab}
         menuItems={menuItems}
         onNavigate={handleNavigation}
+        onDemoClick={() => setIsDemoModalOpen(true)}
       />
 
       <nav
