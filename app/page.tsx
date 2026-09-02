@@ -41,16 +41,16 @@ export default function Home() {
           transition={{ duration: 1, delay: 0.2 }}
           className="text-2xl md:text-4xl font-medium italic opacity-80"
         >
-          Soluciones de software para TODOS
+          Consultora de software
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="mt-6 text-lg text-[var(--secondary-text-color)] max-w-xl"
+          className="mt-6 text-md text-[var(--secondary-text-color)] max-w-xl"
         >
-          Soluciones de software de todo tipo, desde aplicaciones web hasta móviles.
+          Consultora de software, proporcionamos soluciones personalizadas para satisfacer sus necesidades.
         </motion.p>
 
       </section>

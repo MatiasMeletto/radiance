@@ -1,17 +1,8 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import "./globals.css";
-
-const principalFont = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-});
-
-const monoFont = JetBrains_Mono({
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Radiance",
@@ -47,7 +38,8 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${principalFont.className} antialiased`}
+        style={{ fontFamily: "Ubuntu, system-ui, -apple-system, sans-serif" }}
+        className="antialiased"
         suppressHydrationWarning
       >
         <ThemeProvider>

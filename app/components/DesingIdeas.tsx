@@ -1,6 +1,7 @@
 "use client";
 import { useState, memo, useCallback, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { designCategories } from "../constants/designCategories";
 import { DesignModal } from "./DesignModal";
 
@@ -31,15 +32,15 @@ const DesignCard = memo(function DesignCard({
           videoRef.current.currentTime = 0;
         }
       }}
-      className="group relative flex flex-col cursor-pointer rounded-[32px] overflow-hidden border transition-shadow duration-300 hover:shadow-2xl"
+      className="group relative flex flex-col cursor-pointer rounded-[32px] overflow-hidden border duration-300"
       style={{ backgroundColor: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}
     >
       <div className="relative aspect-video overflow-hidden z-0 bg-gray-800">
-        <img
+        <Image
           src={typeof item.fi === 'string' ? item.fi : item.fi.src}
           alt={item.title}
+          fill
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isHovered && item.video ? 'opacity-0' : 'opacity-100'}`}
-          loading="lazy"
         />
 
         {item.video && (

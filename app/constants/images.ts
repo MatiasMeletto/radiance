@@ -1,17 +1,18 @@
+import Escritorio from "../../public/resources/aplicacionEscritorio.png";
+import Web from "../../public/resources/aplicacionWeb.png";
+import Movil from "../../public/resources/aplicacionMovil.png";
+
 export const STICKY_SCROLL_IMAGES = [
   {
-    src: "https://framerusercontent.com/images/WkcfohGmGxdaZXOQkB8urlpwXg.png",
-    title: "Automatización Inteligente",
-    description: "Automatizamos procesos complejos para que tu equipo se enfoque en lo que realmente importa."
+    src: Escritorio.src,
+    title: "Aplicacion para escritorio"
   },
   {
-    src: "https://framerusercontent.com/images/JeI7uULY0av9DxD7q7NVLTuoNc.png",
-    title: "Portales para Clientes",
-    description: "Plataformas personalizadas donde tus clientes pueden acceder y gestionar proyectos en tiempo real."
+    src: Web.src,
+    title: "Aplicacion web"
   },
   {
-    src: "https://framerusercontent.com/images/pfcMvn2yqXD2Cl6VWthMkHlhaKQ.png",
-    title: "Seguimiento en Vivo",
-    description: "Visibility total de tus proyectos con dashboards intuitivos y actualizaciones instantáneas."
+    src: Movil.src,
+    title: "Aplicacion movil"
   },
 ];

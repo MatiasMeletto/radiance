@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import Image from "next/image";
 import { STICKY_SCROLL_IMAGES } from "../constants/images";
 
 export function StickyScroll() {
@@ -22,26 +22,14 @@ export function StickyScroll() {
               <h2 
                 className="text-4xl md:text-5xl font-bold mb-6 leading-tight"
               >
-                Escalabilidad <br/> sin complicaciones.
+                A tu medida <br/> para tu necesidad
               </h2>
               
               <p 
                 className="text-lg opacity-70 mb-8 max-w-md"
               >
-                Te proporcionamos las herramientas necesarias para gestionar tus proyectos de software sin dolores de cabeza.
+                En Radiance, nos especializamos en ofrecer soluciones de software personalizadas que se adaptan a las necesidades únicas de cada cliente. Nuestro enfoque se centra en la innovación, la eficiencia y la satisfacción del cliente.
               </p>
-
-              <ul className="space-y-4">
-                {["Automatización Inteligente", "Portales para Clientes", "Seguimiento en Vivo"].map((item) => (
-                  <li 
-                    key={item}
-                    className="flex items-center gap-3 font-medium opacity-80"
-                  >
-                    <CheckCircle size={20} style={{ color: 'var(--primary-color)' }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
@@ -62,15 +50,21 @@ export function StickyScroll() {
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10 opacity-60" />
                 
-                <img 
+                <Image 
                   src={image.src} 
-                  alt={image.title} 
+                  alt={image.title}
+                  fill
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                 />
                 
-                <div className="absolute bottom-0 left-0 p-6 md:p-8 z-20">
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{image.title}</h3>
-                  <p className="text-white/70 text-sm md:text-base">{image.description}</p>
+                <div 
+                  className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20 backdrop-blur-md"
+                  style={{ 
+                    backgroundColor: 'var(--glass-bg)',
+                    borderColor: 'var(--glass-border)'
+                  }}
+                >
+                  <h3 className="text-xl md:text-2xl text-shadow font-bold text-white mb-2">{image.title}</h3>
                 </div>
               </motion.div>
             ))}

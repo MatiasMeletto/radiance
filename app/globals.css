@@ -54,3 +54,16 @@ body {
   /* Evita transiciones en propiedades que cambien constantemente */
   will-change: background-color;
 }
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}

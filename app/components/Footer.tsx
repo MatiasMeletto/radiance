@@ -43,7 +43,7 @@ export function Footer() {
             <div className="flex flex-col gap-6">
               <h4 className="font-bold text-sm tracking-widest uppercase" style={{ color: 'var(--primary-text-color)' }}>Páginas</h4>
               <div className="flex flex-col gap-4">
-                {["Productos", "Opciones", "Contacto", "Ideas de diseño"].map(link => (
+                {["Opciones", "Contacto", "Ideas de diseño"].map(link => (
                   <FooterLink key={link}>{link}</FooterLink>
                 ))}
               </div>

@@ -33,7 +33,7 @@ export function Community() {
           title="Instagram"
           stat="Síguenos"
           description="Mirá nuestro proceso diario, proyectos en vivo, inspiración de diseño y novedades de la agencia."
-          buttonText="Seguir"
+          buttonText="Proximamente!"
           buttonLink="https://instagram.com/radiancedevs"
           bgColorVar="var(--card-ig-bg)"
           borderColorVar="var(--card-ig-border)"
@@ -114,17 +114,21 @@ function SocialCard({
       </p>
 
       <motion.a
-        href={buttonLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-sm transition-colors border shadow-sm"
+        href={buttonText === "Proximamente!" ? undefined : buttonLink}
+        target={buttonText === "Proximamente!" ? undefined : "_blank"}
+        rel={buttonText === "Proximamente!" ? undefined : "noopener noreferrer"}
+        whileHover={buttonText === "Proximamente!" ? undefined : { scale: 1.02 }}
+        whileTap={buttonText === "Proximamente!" ? undefined : { scale: 0.98 }}
+        onClick={buttonText === "Proximamente!" ? (event) => event.preventDefault() : undefined}
+        className={`inline-flex items-center justify-center px-10 py-4 rounded-full font-bold text-sm transition-colors border shadow-sm ${
+          buttonText === "Proximamente!" ? "pointer-events-none opacity-70 cursor-not-allowed" : ""
+        }`}
         style={{ 
           backgroundColor: 'var(--bg-color)', 
           color: 'var(--primary-text-color)',
           borderColor: borderColorVar 
         }}
+        aria-disabled={buttonText === "Proximamente!"}
       >
         {buttonText}
       </motion.a>

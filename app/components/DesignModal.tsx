@@ -1,6 +1,7 @@
 "use client";
 import { memo, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { X } from "lucide-react";
 import { designCategories } from "../constants/designCategories";
 import { RequestDesignModal } from "./RequestDesignModal";
@@ -42,7 +43,7 @@ export const DesignModal = memo(function DesignModal({ selectedId, onClose }: De
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100vh", opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col rounded-[32px] border shadow-2xl pointer-events-auto scrollbar-hide"
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-x-hidden overflow-y-auto flex flex-col rounded-[32px] border shadow-2xl pointer-events-auto scrollbar-hidden"
               style={{ 
                 backgroundColor: 'var(--bg-color)', 
                 borderColor: 'var(--glass-border)' 
@@ -72,12 +73,12 @@ export const DesignModal = memo(function DesignModal({ selectedId, onClose }: De
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <img 
+                  <Image 
                     src={typeof selectedItem.fi === 'string' ? selectedItem.fi : selectedItem.fi} 
-                    alt={selectedItem.title} 
+                    alt={selectedItem.title}
+                    fill
                     className="w-full h-full object-cover"
                     loading="eager"
-                    decoding="async"
                   />
                 )}
               </div>
